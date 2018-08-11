@@ -6,6 +6,7 @@ const Schema = mongoose.Schema;
 
 const TaskSchema = new Schema({
     task: {type: String},
+    note: {type: String},
     complete: {type: Boolean, default: false}
 }); //end of TaskSchema
 
@@ -34,5 +35,15 @@ router.post('/', (req, res) => {
         res.sendStatus(500);
     });
 }); //end of POST
+
+router.delete('/taskDeleted/:id', (req, res) => {
+    console.log('/taskDeleted DELETE hit');
+    Task.findByIdAndRemove(req.params.id).then( (response) => {
+        res.sendStatus(200);
+    }).catch( (error) => {
+        console.log('error in Delete', error);
+        res.sendStatus(500);
+    });
+}); //end of DELETE
 
 module.exports = router;

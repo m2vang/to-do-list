@@ -20,6 +20,10 @@
         <form ng-submit="tc.sendTask(tc.taskIn)">
             <label>Task:</label>
             <input type="text" placeholder="e.g. Wash dishes" ng-model="tc.taskIn">
+            <br>
+            <label>Notes:</label>
+            <input type="text" placeholder="e.g. Buy dish soap" ng-model="tc.noteIn">
+            <br>
             <input type="submit" value="Add Task">
         </form>
 
@@ -28,6 +32,7 @@
                 <thead>
                     <tr>
                         <th>Tasks</th>
+                        <th>Notes</th>
                         <th>Complete</th>
                         <th>Delete</th>
                     </tr>
@@ -35,11 +40,12 @@
                 <tbody>
                     <tr ng-repeat="task in tc.taskList">
                         <td>{{task.task}}</td>
+                        <td>{{task.note}}</td>
                         <td>
                             <button>Mark as complete</button>
                         </td>
                         <td>
-                            <button>Delete</button>
+                            <button ng-click="tc.deleteTask(task._id)">Delete</button>
                         </td>
                     </tr>
                 </tbody>

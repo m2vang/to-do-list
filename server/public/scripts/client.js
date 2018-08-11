@@ -9,10 +9,11 @@ taskApp.controller('TaskController', function ($http) {
     getTasks();
 
     vm.sendTask = function () {
-        console.log('in sendTask', vm.taskIn);
+        console.log('in sendTask', vm.taskIn, vm.noteIn);
 
         let taskToSend = {
             task: vm.taskIn,
+            note: vm.noteIn,
             complete: vm.doneIn
         };
 
@@ -27,7 +28,24 @@ taskApp.controller('TaskController', function ($http) {
             alert('unable to post task');
             console.log('error in POST', error);           
         });
-    }; //end of POST sendTask
+
+        vm.taskIn = '';
+        vm.noteIn = '';
+    }; //end of POST
+
+    vm.deleteTask = function (taskId) {
+        console.log('in deleteTask');
+        $http({
+            method: 'DELETE',
+            url: '/task/taskDeleted/' + taskId
+        }).then(function (response) {
+            console.log('task deleted');
+            getTasks();
+        }).catch(function (error) {
+        alert('error in deleting')
+        console.log('error deleting', error);
+        });
+    }; //end of DELETE 
 
     function getTasks() {
         console.log('in getTasks');
@@ -41,5 +59,5 @@ taskApp.controller('TaskController', function ($http) {
             alert('error getting tasks');
             console.log('error in GET', error);
         });
-    }; //end of GET getTasks
+    }; //end of GET
 })
