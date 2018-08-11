@@ -33,8 +33,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
+                    <tr ng-repeat="task in tc.taskList">
+                        <td>{{task.task}}</td>
                         <td>
                             <button>Mark as complete</button>
                         </td>
