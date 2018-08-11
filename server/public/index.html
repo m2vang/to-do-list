@@ -17,9 +17,9 @@
             <h1>To Do List:</h1>
         </header>
         <br>
-        <form>
+        <form ng-submit="tc.sendTask(tc.taskIn)">
             <label>Task:</label>
-            <input type="text" placeholder="e.g. Wash dishes">
+            <input type="text" placeholder="e.g. Wash dishes" ng-model="tc.taskIn">
             <input type="submit" value="Add Task">
         </form>
 

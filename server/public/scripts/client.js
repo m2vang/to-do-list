@@ -8,6 +8,27 @@ taskApp.controller('TaskController', function ($http) {
     vm.taskList = [];
     getTasks();
 
+    vm.sendTask = function () {
+        console.log('in sendTask', vm.taskIn);
+
+        let taskToSend = {
+            task: vm.taskIn,
+            complete: vm.doneIn
+        };
+
+        $http({
+            method: 'POST',
+            url: '/task',
+            data: taskToSend
+        }).then(function (response) {
+            console.log('task posted', response.data);
+            getTasks();
+        }).catch(function (error) {
+            alert('unable to post task');
+            console.log('error in POST', error);           
+        });
+    }; //end of POST sendTask
+
     function getTasks() {
         console.log('in getTasks');
         $http({
@@ -18,7 +39,7 @@ taskApp.controller('TaskController', function ($http) {
             vm.taskList = response.data;
         }).catch(function (error) {
             alert('error getting tasks');
-            console.log('error in getTasks', error);
+            console.log('error in GET', error);
         });
-    }; //end of getTasks
+    }; //end of GET getTasks
 })
