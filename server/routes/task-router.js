@@ -39,11 +39,27 @@ router.post('/', (req, res) => {
 router.delete('/taskDeleted/:id', (req, res) => {
     console.log('/taskDeleted DELETE hit');
     Task.findByIdAndRemove(req.params.id).then( (response) => {
+        console.log('task deleted', response);       
         res.sendStatus(200);
     }).catch( (error) => {
         console.log('error in Delete', error);
         res.sendStatus(500);
     });
 }); //end of DELETE
+
+router.put('/taskCompleted/:id', (req, res) => {
+    console.log('/taskCompleted PUT hit', req.params.id);
+    Task.findOne({_id: req.params.id}).then( (foundTask) => {
+        console.log('task completed', foundTask);
+        foundTask.complete = true;
+        foundTask.save().then( (response) => {
+            console.log('task completed', foundTask);           
+            res.sendStatus(200);
+        }).catch( (error) => {
+            console.log('error in completion', error);   
+            res.sendStatus(500);
+        });
+    });
+}); //end of PUT
 
 module.exports = router;

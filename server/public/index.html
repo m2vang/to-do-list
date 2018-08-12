@@ -38,11 +38,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="task in tc.taskList">
+                    <tr ng-repeat="task in tc.taskList" ng-class="task.complete ? 'done' : 'not-done' ">
                         <td>{{task.task}}</td>
                         <td>{{task.note}}</td>
                         <td>
-                            <button>Mark as complete</button>
+                            <button ng-click="tc.completeTask(task._id)">Mark as complete</button>
                         </td>
                         <td>
                             <button ng-click="tc.deleteTask(task._id)">Delete</button>

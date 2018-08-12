@@ -33,6 +33,19 @@ taskApp.controller('TaskController', function ($http) {
         vm.noteIn = '';
     }; //end of POST
 
+    vm.completeTask = function(taskId) {
+        console.log('in completeTask', taskId);    
+        $http({
+            method: 'PUT',
+            url: '/task/taskCompleted/' + taskId
+        }).then(function (response) {
+            getTasks();
+        }).catch(function (error) {
+            alert('error completing task')
+            console.log('error completing', error);          
+        });
+    }; //end of PUT
+
     vm.deleteTask = function (taskId) {
         console.log('in deleteTask');
         $http({
@@ -42,8 +55,8 @@ taskApp.controller('TaskController', function ($http) {
             console.log('task deleted');
             getTasks();
         }).catch(function (error) {
-        alert('error in deleting')
-        console.log('error deleting', error);
+            alert('error in deleting')
+            console.log('error deleting', error);
         });
     }; //end of DELETE 
 
