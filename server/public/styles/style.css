@@ -1,7 +1,7 @@
 
 html, body {
     text-align: center;
-    background-color: white;
+    background-color: darkblue;
 }
 
 h1 {
@@ -44,7 +44,7 @@ th {
 
 .form-container {
     border-radius: 5px;
-    background-color: lightgray;
+    background-color: whitesmoke;
     padding: 20px;
 }
 
@@ -59,7 +59,7 @@ th {
 }
 
 .task-table th {
-    background-color: lightgray;
+    background-color: whitesmoke;
     text-align: center;
     text-decoration-line: underline;
 }
@@ -78,10 +78,10 @@ th {
 }
 
 .done {
-    background-color: red;
+    background-color: darkgray;
     color: white;
 }
 
 .not-done {
-    background-color: lightgray;
+    background-color: whitesmoke;
 }

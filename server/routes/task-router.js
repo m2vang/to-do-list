@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
 router.delete('/taskDeleted/:id', (req, res) => {
     console.log('/taskDeleted DELETE hit');
     Task.findByIdAndRemove(req.params.id).then( (response) => {
-        console.log('task deleted', response);       
+        console.log('task deleted', response);  
         res.sendStatus(200);
     }).catch( (error) => {
         console.log('error in Delete', error);
