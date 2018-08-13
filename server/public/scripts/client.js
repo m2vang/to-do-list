@@ -48,16 +48,22 @@ taskApp.controller('TaskController', function ($http) {
 
     vm.deleteTask = function (taskId) {
         console.log('in deleteTask');
-        $http({
-            method: 'DELETE',
-            url: '/task/taskDeleted/' + taskId
-        }).then(function (response) {
-            console.log('task deleted');
-            getTasks();
-        }).catch(function (error) {
-            alert('error in deleting')
-            console.log('error deleting', error);
-        });
+        let r = confirm('Confirming delete?')
+        if (r == true) {
+            alert('Task deleted!')
+            $http({
+                method: 'DELETE',
+                url: '/task/taskDeleted/' + taskId
+            }).then(function (response) {
+                console.log('task deleted');
+                getTasks();
+            }).catch(function (error) {
+                alert('error in deleting')
+                console.log('error deleting', error);
+            });
+        } else {
+            alert('Cancel deletion.')
+        };
     }; //end of DELETE 
 
     function getTasks() {
