@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 5000;
 
 //mongoose require
 const mongoose = require('mongoose');
-const mongoURI = 'mongodb://localhost:27017/tasksToDo';
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/tasksToDo';
 
 //attempt to connect to mongo
 mongoose.connect(mongoURI, {useNewUrlParser: true});
