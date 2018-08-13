@@ -13,44 +13,43 @@
 
 <body ng-app="taskApp">
     <div ng-controller="TaskController as tc">
-        <header>
-            <h1>To Do List:</h1>
-        </header>
-        <br>
-        <form ng-submit="tc.sendTask(tc.taskIn)">
-            <label>Task:</label>
-            <input type="text" placeholder="e.g. Wash dishes" ng-model="tc.taskIn">
+        <div class="form-container">
+            <header>
+                <h1>To Do List:</h1>
+            </header>
             <br>
-            <label>Notes:</label>
-            <input type="text" placeholder="e.g. Buy dish soap" ng-model="tc.noteIn">
-            <br>
-            <input type="submit" value="Add Task">
-        </form>
-
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tasks</th>
-                        <th>Notes</th>
-                        <th>Complete</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="task in tc.taskList" ng-class="task.complete ? 'done' : 'not-done' ">
-                        <td>{{task.task}}</td>
-                        <td>{{task.note}}</td>
-                        <td>
-                            <button ng-click="tc.completeTask(task._id)">Mark as complete</button>
-                        </td>
-                        <td>
-                            <button ng-click="tc.deleteTask(task._id)">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <form ng-submit="tc.sendTask(tc.taskIn)" id="">
+                <label>Task:</label>
+                <input type="text" placeholder="e.g. Wash dishes" ng-model="tc.taskIn">
+                <br>
+                <label>Notes:</label>
+                <input type="text" placeholder="e.g. Buy dish soap" ng-model="tc.noteIn">
+                <br>
+                <input type="submit" value="Add Task">
+            </form>
         </div>
+        <table class="task-table">
+            <thead>
+                <tr class="headers">
+                    <th>Tasks</th>
+                    <th>Notes</th>
+                    <th>Complete</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="task in tc.taskList" ng-class="task.complete ? 'done' : 'not-done' " class="data">
+                    <td>{{task.task}}</td>
+                    <td>{{task.note}}</td>
+                    <td>
+                        <button ng-click="tc.completeTask(task._id)">Mark as complete</button>
+                    </td>
+                    <td>
+                        <button class="delete" ng-click="tc.deleteTask(task._id)">X</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 

@@ -1,7 +1,87 @@
+
+html, body {
+    text-align: center;
+    background-color: white;
+}
+
+h1 {
+    text-decoration-line: underline;
+}
+
+input[type=text] {
+    width: 300px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: darkblue;
+    color: white;
+    margin-left: 300px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: royalblue;
+}
+
+label {
+    font-weight: bold;
+    width: 60px;
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+th {
+    text-align: left;
+    padding: 8px;
+}
+
+.form-container {
+    border-radius: 5px;
+    background-color: lightgray;
+    padding: 20px;
+}
+
+.task-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.task-table, td {
+    text-align: center;
+    padding: 8px;
+}
+
+.task-table th {
+    background-color: lightgray;
+    text-align: center;
+    text-decoration-line: underline;
+}
+
+.headers {
+    border-style: double;
+}
+
+.data {
+    border-style: double;
+}
+
+.delete {
+    font-weight: bolder;
+    color: red;
+}
+
 .done {
     background-color: red;
+    color: white;
 }
 
 .not-done {
-    background-color: white;
+    background-color: lightgray;
 }
