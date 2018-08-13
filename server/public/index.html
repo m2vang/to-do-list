@@ -31,14 +31,14 @@
         <table class="task-table">
             <thead>
                 <tr class="headers">
-                    <th>Tasks</th>
+                    <th ng-click="tc.sortData('task')">Tasks<div ng-class="task.complete ? 'sort-down' : 'sort-up'"></div></th>
                     <th>Notes</th>
-                    <th>Complete</th>
+                    <th ng-click="tc.sortData('complete')">Complete<div ng-class="task.complete ? 'sort-down' : 'sort-up' "></div></th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="task in tc.taskList" ng-class="task.complete ? 'done' : 'not-done' " class="data">
+                <tr ng-repeat="task in tc.taskList | orderBy:tc.sortColumn : tc.reverseSort" ng-class="task.complete ? 'done' : 'not-done' " class="data">
                     <td>{{task.task}}</td>
                     <td>{{task.note}}</td>
                     <td>

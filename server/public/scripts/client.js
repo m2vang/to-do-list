@@ -8,9 +8,24 @@ taskApp.controller('TaskController', function ($http) {
     vm.taskList = [];
     getTasks();
 
+    vm.sortColumn = "";
+    vm.reverseSort = true;
+
+    vm.sortData = function (column) {
+        console.log('in sortData', column);
+        vm.reverseSort = (vm.sortColumn == column) ? !vm.reverseSort : true;
+        vm.sortColumn = column;
+    };
+
+    vm.getSortClass = function (column) {
+        console.log('in getSortClass', column);
+        if (vm.sortColumn == column) {
+            return vm.reverseSort ? 'sort-down' : 'sort-up'
+        } return '';
+    };
+
     vm.sendTask = function () {
         console.log('in sendTask', vm.taskIn, vm.noteIn);
-
         let taskToSend = {
             task: vm.taskIn,
             note: vm.noteIn,
@@ -34,23 +49,29 @@ taskApp.controller('TaskController', function ($http) {
     }; //end of POST
 
     vm.completeTask = function(taskId) {
-        console.log('in completeTask', taskId);    
-        $http({
-            method: 'PUT',
-            url: '/task/taskCompleted/' + taskId
-        }).then(function (response) {
-            getTasks();
-        }).catch(function (error) {
-            alert('error completing task')
-            console.log('error completing', error);          
-        });
+        console.log('in completeTask', taskId);  
+        let cT = confirm('Comfirming completion?');
+        if (cT == true) {
+            alert('Task completed!');
+            $http({
+                method: 'PUT',
+                url: '/task/taskCompleted/' + taskId
+            }).then(function (response) {
+                getTasks();
+            }).catch(function (error) {
+                alert('error completing task')
+                console.log('error completing', error);
+            });
+        } else {
+            alert('Cancel completion.')
+        };       
     }; //end of PUT
 
     vm.deleteTask = function (taskId) {
         console.log('in deleteTask');
-        let r = confirm('Confirming delete?')
-        if (r == true) {
-            alert('Task deleted!')
+        let dT = confirm('Confirming delete?');
+        if (dT == true) {
+            alert('Task deleted!');
             $http({
                 method: 'DELETE',
                 url: '/task/taskDeleted/' + taskId
@@ -75,7 +96,7 @@ taskApp.controller('TaskController', function ($http) {
             console.log('found task', response.data);
             vm.taskList = response.data;
         }).catch(function (error) {
-            alert('error getting tasks');
+            alert('error getting tasks', error);
             console.log('error in GET', error);
         });
     }; //end of GET
